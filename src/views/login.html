@@ -20,22 +20,15 @@
           </div>
         </div>
       </nav>
-<div th:fragment="content" class="form-signin">
-    <form name="f" method="post">
-        <fieldset>
+<div class="form-signin">
+  <div id="login-error-msg-holder">
+    <p id="login-error-msg" style="opacity:0">Invalid username <span id="error-msg-second-line">and/or password</span></p>
+  </div>
+    <form id="login-form" name="f" >
+        <!-- <fieldset> -->
 
             <img class="mb-4" src="https://cdn4.iconfinder.com/data/icons/finite-arrows-interface/16/check-box-512.png" alt="" width="70%" style="padding-left:24px">
             <legend>Login</legend>
-            <!-- <div th:if="${param.error}" class="alert alert-error">
-                Invalid username and password.
-            </div> -->
-
-            <!-- <div th:if="${param.logout}" class="alert alert-success">
-                You have been logged out, Please login again.
-            </div> -->
-            <!-- <div th:if="${registerSuccess}" class="alert alert-success">
-                <span th:text="${registerSuccess}">Success</span>
-            </div> -->
 
             <div class="form-floating">
             <input type="text" id="username" name="username" class="form-control" required/>
@@ -47,11 +40,11 @@
             <input type="password" id="password" name="password" class="form-control" required/>
                 <label for="password">Password</label>
             </div>
-
+      
             <div class="form-actions">
-                <button type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                <button type="submit" id="login-form-submit" class="w-100 btn btn-lg btn-primary">Log in</button>
             </div>
-        </fieldset>
+        <!-- </fieldset> -->
 
     </form>
     <a href="./register.html">New User? Sign up</a>
@@ -110,4 +103,5 @@ body {
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
+<script src="../scripts/login.js"></script>
 </html>
