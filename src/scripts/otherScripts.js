@@ -48,7 +48,8 @@
 			};
 			
 			// Method invocation
-			
+			// console.log("Product name below:")
+			// console.log(document.getElementsByClassName('product-description').);
 			this.createCart();
 			this.handleAddToCartForm();
 			this.handleCheckoutOrderForm();
@@ -71,7 +72,6 @@
 			
 				var cart = {};
 				cart.items = [];
-			
 				this.storage.setItem( this.cartName, this._toJSONString( cart ) );
 				this.storage.setItem( this.shippingRates, "0" );
 				this.storage.setItem( this.total, "0" );
@@ -640,8 +640,19 @@
 		}
 	};
 	
+
 	$(function() {
 		var shop = new $.Shop( "#site" );
 	});
 
+	
+	
+	// uniqueID: function(){
+	// 	return ;
+	// }
+	// function isCreated(){
+	
+	// }
+	// $( "#other" ).click(function() 
 })( jQuery );
+
