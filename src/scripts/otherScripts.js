@@ -6,7 +6,8 @@
 	
 	$.Shop.prototype = {
 		init: function() {
-		
+			console.log(sessionStorage.getItem('email'));
+
 		    // Properties
 		
 			this.cartPrefix = ""; // Prefix string to be prepended to the cart's name in the session storage
@@ -224,6 +225,7 @@
 					}
 
 					self.storage.setItem( self.total, self._convertNumber( updatedTotal ) );
+					sessionStorage.setItem('totalPrice',updatedTotal);
 					self.storage.setItem( self.shippingRates, self._convertNumber( self._calculateShipping( totalQty ) ) );
 
 					self.storage.setItem( self.cartName, self._toJSONString( updatedCart ) );
@@ -336,7 +338,9 @@
 					var pname = $.trim( $row.find( ".pname" ).text() );
 					var pqty = self._convertString( $row.find( ".pqty > .qty" ).val() );
 					var pprice = self._convertString( self._extractPrice( $row.find( ".pprice" ) ) );
-					
+					var sstorage = pname+"-"+pqty+",";
+					// console.log($row.find( ".pname" ).text());
+					// sessionStorage.setItem('nameqty',sstorage);
 					var cartObj = {
 						product: pname,
 						price: pprice,
@@ -374,6 +378,7 @@
 					var total = self._convertString( self.storage.getItem( self.total ) );
 					var sTotal = total + subTotal;
 					self.storage.setItem( self.total, sTotal );
+					sessionStorage.setItem('totalPrice',sTotal);
 					self._addToCart({
 						product: name,
 						price: price,
@@ -643,6 +648,7 @@
 
 	$(function() {
 		var shop = new $.Shop( "#site" );
+		
 	});
 
 	

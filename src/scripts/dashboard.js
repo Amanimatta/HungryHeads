@@ -1,63 +1,56 @@
-// // https://j57w4caona.execute-api.us-east-1.amazonaws.com/alpha/searchrecipe?recipeName=pizza
-// var searchButton = document.getElementById("button-addon2");
-
 function searchByRecipe() {
     var searchtype = document.getElementById('dropdown').value
 
     var search = document.getElementById("searchInput").value;
+    console.log(sessionStorage.getItem('email'));
+
     console.log(searchtype);
     console.log("Search" + search);
     var myHeaders = new Headers();
     myHeaders.append("Authorization", "Basic aHVuZ3J5aGVhZHM6UGFzc3dvcmQxMjM=");
 
-    // const headers = {
-    //     'Content-Type': 'application/json',
-    //     'Access-Control-Allow-Origin': '*',
-    //     'Access-Control-Allow-Methods': 'GET,POST,PATCH,OPTIONS'
-    // }
-    // myHeaders.append('Access-Control-Allow-Origin','*');
-    // myHeaders.append('Content-Type','application/json');
-    // myHeaders.append('Access-Control-Allow-Methods','GET,POST,PATCH,OPTIONS')
-    // const response = {
-    //     statusCode: 200,
-    //     headers: headers,
-    //     body: JSON.stringify(X),
-    // };
-    var requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        // mode: 'no-cors',
-        redirect: 'follow',
-
-    };
+    
     if (searchtype === 'Recipe') {
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+          };
         fetch("https://j57w4caona.execute-api.us-east-1.amazonaws.com/alpha/findrecipe?recipeName=" + search, requestOptions)
             .then(response => response.json())
             .then((result) => {
-                iteraterecipes(result.display_list);
+                iteraterecipes(result.display_list,result.display_list.length);
             })
             .catch(error => console.log('error', error));
     }
     else if (searchtype === 'Ingredient') {
-        // https://j57w4caona.execute-api.us-east-1.amazonaws.com/alpha/lookupingredient?ingredients=mushroom,onion
-        // fetch("https://j57w4caona.execute-api.us-east-1.amazonaws.com/alpha/lookupingredient?ingredients="+search, requestOptions)
-        fetch("https://j57w4caona.execute-api.us-east-1.amazonaws.com/alpha/searchingredient?ingredientsList=" + search, requestOptions)
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            redirect: 'follow'
+          };
+        fetch("https://j57w4caona.execute-api.us-east-1.amazonaws.com/alpha/findingredients?ingredientsList=" + search, requestOptions)
             .then(response => response.json())
             .then((result) => {
-                console.log(result);
-                iteraterecipes(result.display_list);
+                console.log(JSON.parse(result.display_list));
+                
+                iteraterecipes(JSON.parse(result.display_list),Object.keys(JSON.parse(result.display_list)).length);
             })
             .catch(error => console.log('error', error));
     }
 }
-function iteraterecipes(recipeArray) {
-    const length = recipeArray.length;
+function iteraterecipes(recipeArray,length) {
+    // const length = recipeArray.length;
+    console.log(length)
     console.log(recipeArray);
     console.log(recipeArray[0]);
     console.log(recipeArray[0]['name'])
+    var allIngredients;
     for (var i = 0; i < length; i++) {
-        recipeCreator(recipeArray[i]['name'], recipeArray[i]['url'])
+        allIngredients += recipeArray[i]['all_ingredients'];
+        recipeCreator(recipeArray[i]['name'], recipeArray[i]['url'],recipeArray[i]['price'])
     }
+    sessionStorage.setItem('ingredients',allIngredients);
     var element = document.getElementById('body');
 
     const script = document.createElement('script');
@@ -66,8 +59,8 @@ function iteraterecipes(recipeArray) {
 
     element.appendChild(script);
 }
-function recipeCreator(recipename, url) {
-    let randomNum = (Math.floor(Math.random() * (20 - 5 + 1) + 20)).toString();
+function recipeCreator(recipename, url,price) {
+    let randomNum = price;//(Math.floor(Math.random() * (20 - 5 + 1) + 20)).toString();
     let products = document.getElementById('products');
     const ulist = document.createElement('ul');
     const list = document.createElement('li');
@@ -140,11 +133,4 @@ function recipeCreator(recipename, url) {
     ulist.appendChild(list);
 
     products.appendChild(ulist);
-
-    // var key = "test" + Date.now() + Math.random();
-    // localStorage.setItem(key,document.getElementsByTagName('ul').outerHTML);
-    // }
-    // document.location.reload(false);
-    // recipeshopping($);
-
 }

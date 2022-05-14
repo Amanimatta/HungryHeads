@@ -33,6 +33,9 @@ function awsCall(username,password){
             if(result.statusCode===200){
                 console.log("true!!");
                 flag=true;
+                sessionStorage.setItem('email', username)
+                // $.session.set('email', username);
+                console.log(sessionStorage.getItem('email'));
             } 
                 else{
                     console.log("false!!")

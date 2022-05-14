@@ -10,6 +10,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="./index.html">Hungry Heads</a>
+            <button class="btn btn-outline-secondary" oncick="window.location.assign('./index.html')">Logout</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -27,9 +28,8 @@
                 <!---->
             </legend>
             <div>
-            <button role="checkbox" aria-checked="false" aria-label="Tomato" id="ember531" onclick="changeButton(this.id)" type="button"><span class="artdeco-pill__text">
-                    Tomato
-                </span>
+            <button role="checkbox" aria-checked="false" aria-label="Tomato" id="ember531" onclick="changeButton(this.id)" type="button">
+                <span class="artdeco-pill__text">Tomato</span>
 
                 <li-icon aria-hidden="true" type="plus-icon" class="artdeco-pill__icon" size="small"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-supported-dps="16x16" fill="currentColor" class="mercado-match" width="16" height="16" focusable="false">
                         <path d="M14 9H9v5H7V9H2V7h5V2h2v5h5z"></path>
@@ -116,7 +116,7 @@
             </div>
             
             <div>
-                <input id="submit_ing" type="submit" onclick="submitV()"></input>
+                <input id="submit_ing" type="button" value="Submit" onclick="submitV()"></input>
             </div>
         </div>
             <!---->
@@ -132,6 +132,8 @@
     <!-- <input type="text" id="enterIng" value=""> -->
 
     <!--Scripts from here-->
+    <script src="../scripts/register.js" ></script>
+
     <script src="../scripts/preference.js" ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->

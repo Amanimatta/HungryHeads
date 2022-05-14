@@ -13,6 +13,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="./index.html">Hungry Heads</a>
+      <button class="btn btn-outline-secondary" oncick="window.location.assign('./index.html')">Logout</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -27,8 +28,9 @@
     </div>
   </nav>
   <div class="form-signin">
-    <form name="signup" id="signup" onSubmit="return formValidation();">
-      <fieldset>
+    <form name="signup" id="signup" >
+    <!-- onSubmit="return formValidation();" -->
+      <!-- <fieldset> -->
         <img class="mb-4" src="https://cdn4.iconfinder.com/data/icons/finite-arrows-interface/16/check-box-512.png"
           alt="" width="70%" style="padding-left:24px">
         <legend>Register</legend>
@@ -66,9 +68,9 @@
           <label for="confirm-password">Confirm Password</label>
         </div><label id="check-password"></label>
         <div >
-          <input type="submit" id="submit-btn" class="w-100 btn btn-lg btn-primary" value="Sign Up"></input>
+          <input type="button" id="submit-btn" class="w-100 btn btn-lg btn-primary" value="Sign Up" onclick="formValidation()"></input>
         </div>
-      </fieldset>
+      <!-- </fieldset> -->
     </form>
   </div>
   
